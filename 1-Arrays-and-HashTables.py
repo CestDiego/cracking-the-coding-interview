@@ -20,9 +20,7 @@ def is_palyndrome(le_string):
         le_dict[char] += 1
 
     count = 0
-    for key, value in le_dict.iteritems():
-        if value % 2:
-            count += 1
+    for key, value in le_dict.iteritems(): if value % 2: count += 1
 
     if length % 2:
         ## if odd length, only one odd repetition of letter is allowed. 1, 3, 5, etc
@@ -45,7 +43,27 @@ class HashTable:
 
 
 #1.6
-
 def string_comprehension(string):
-    buf_char = ""
+
+    le_string = ""
+    new_string = []
+    new_count  = []
     # lets say we count upper case and lower case letters differently.
+    for char in string:
+        if len(new_string) == 0 and len(new_count) == 0:
+            new_string.append(char)
+            new_count.append(1)
+        else:
+            if char == new_string[-1]:
+                new_count[-1] += 1
+            else:
+                new_count.append(1)
+                new_string.append(char)
+
+    if max(new_count) == 2:
+        return string
+
+    for c, n in zip(new_string, new_count):
+        le_string += c + str(n)
+
+    return le_string

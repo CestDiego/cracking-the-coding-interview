@@ -37,3 +37,8 @@ class MaxHeap(object):
         if len(self.array) == 0:
             return None
         return self.array[0]
+
+    def populate(self, n):
+        for _ in range(n):
+            self.push(random.randint(-10*n,10*n))
+        return self

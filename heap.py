@@ -1,4 +1,6 @@
 from __future__ import division
+import random
+import numpy as np
 
 class MaxHeap(object):
     def __init__(self):
@@ -7,8 +9,9 @@ class MaxHeap(object):
     def parent_index(self, index):
         return int((index-1)/2)
 
-    def children_index_tuple(self, index):
-        return (2 * index + 1, 2 * index + 2)
+    def children_indices(self, index):
+        return filter(lambda x: len(self.array) > x,
+                      [2 * index + 1, 2 * index + 2])
 
     def swap(self, index1, index2):
         self.array[index1], self.array[index2] =  self.array[index2], self.array[index1]
@@ -28,6 +31,15 @@ class MaxHeap(object):
 
         self.percolate_up(parent_index)
 
+    def percolate_down(self, index):
+        children_indices =  self.children_indices(index)
+        children = [self.array[child] for child in children_indices]
+        if len(children) == 0 or self.array[index] >= max(children):
+            return
+        max_index = children_indices[np.argmax(children)]
+        self.swap(index, max_index)
+        self.percolate_down(max_index)
+
     def push(self, elem):
         index = len(self.array)
         self.array.append(elem)
@@ -37,6 +49,13 @@ class MaxHeap(object):
         if len(self.array) == 0:
             return None
         return self.array[0]
+
+    def pop(self):
+        value = self.peek()
+
+        self.array[0] = self.array.pop()
+        self.percolate_down(0)
+        return value
 
     def populate(self, n):
         for _ in range(n):

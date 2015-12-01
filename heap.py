@@ -65,5 +65,5 @@ class MaxHeap(object):
         return self
 
     def populate_from_list(self, l):
-        for _ in range(n):
-            self.push(random.randint(-10*n,10*n))
+        for i in l:
+            self.push(i)

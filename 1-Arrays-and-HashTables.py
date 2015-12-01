@@ -108,17 +108,17 @@ def doIt(mat, N):
             rotate_points(mat, coords, N)
     return mat
 
-def test():
+def test_mat_3x3():
     mat = [[1,2,3],[4,5,6],[7,8,9]]
     expected_mat = [[7,4,1],[8,5,2],[9,6,3]]
-    return expected_mat == doIt(mat, 3)
+    assert expected_mat == doIt(mat, 3)
 
-def test2():
+def test_mat_1x1():
     mat = [[1]]
     expected_mat = [[1]]
-    return expected_mat == doIt(mat, 1)
+    assert expected_mat == doIt(mat, 1)
 
-def test3():
+def test_mat_4x4():
     mat = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]
     expected_mat = [[13,9,5,1],[14,10,6,2],[15,11,7,3],[16,12,8,4]]
-    return expected_mat == doIt(mat, 4)
+    assert expected_mat == doIt(mat, 4)

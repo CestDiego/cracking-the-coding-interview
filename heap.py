@@ -52,9 +52,11 @@ class MaxHeap(object):
 
     def pop(self):
         value = self.peek()
-
-        self.array[0] = self.array.pop()
-        self.percolate_down(0)
+        if value is not None:
+            last = self.array.pop()
+            if not len(self.array) == 0:
+             self.array[0] = last
+             self.percolate_down(0)
         return value
 
     def populate(self, n):

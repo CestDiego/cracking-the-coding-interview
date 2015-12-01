@@ -1,9 +1,8 @@
 from __future__ import division
 
 class MaxHeap(object):
-    def __init__(self, size):
-        self.array = [None] * size
-        self.n     = 0
+    def __init__(self):
+        self.array = []
 
     def parent_index(self, index):
         return int((index-1)/2)
@@ -30,7 +29,11 @@ class MaxHeap(object):
         self.percolate_up(parent_index)
 
     def push(self, elem):
-        self.array[self.n] = elem
-        self.percolate_up(self.n)
+        index = len(self.array)
+        self.array.append(elem)
+        self.percolate_up(index)
 
-        self.n += 1
+    def peek(self):
+        if len(self.array) == 0:
+            return None
+        return self.array[0]

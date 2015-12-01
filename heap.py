@@ -53,7 +53,7 @@ class MaxHeap(object):
     def pop(self):
         value = self.peek()
         if len(self.array) == 1:
-            return self.pop()
+            return self.array.pop()
         if value is not None:
             self.array[0] = self.array.pop()
             self.percolate_down(0)

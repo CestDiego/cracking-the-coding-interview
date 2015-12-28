@@ -4,11 +4,13 @@ function LinkedList(){
   this.head = null;
 }
 
+function Node(value){
+  this.value = value;
+  this.next = null;
+}
+
 LinkedList.prototype.push = function(val){
-  var node = {
-    value: val,
-    next: null
-  }
+  var node = new Node(val);
   if(!this.head){
     this.head = node;
   }

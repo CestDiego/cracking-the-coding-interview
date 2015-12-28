@@ -88,3 +88,33 @@ function selectionSort(arr) {
   }
   return arr;
 }
+
+// 2.6 Adding numbers in linked lists
+
+function addListNumbers(x, y, carry) {
+  // Assuming X and Y are linked lists
+  var resultNode = new Node(0),
+      sum = carry;
+
+  if (x === null && y === null && carry === 0) {
+    return null
+  }
+  if (x !== null)
+    sum += x.value
+  if (y !== null)
+    sum += y.value
+
+  resultNode.value = sum % 10;
+
+  if (x.next || y.next){
+    var next_node = addListNumbers(x.next, y.next, sum > 10 ? 1 : 0)
+    resultNode.next = next_node
+  }
+  else if (carry !== 0){
+    var tmp = new Node(carry);
+    resultNode.next = tmp;
+  }
+
+  return resultNode
+
+};
